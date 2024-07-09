@@ -24,7 +24,7 @@ export const loader = async () => {
 };
 
 export default function App() {
-  const { contacts } = useLoaderData();
+  const { contacts } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
