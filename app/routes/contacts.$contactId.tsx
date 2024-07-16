@@ -88,12 +88,14 @@ const Favorite: FunctionComponent<{
   contact: Pick<ContactRecord, 'favorite'>;
 }> = ({ contact }) => {
   const fetcher = useFetcher();
-  const favorite = contact.favorite;
+  const favorite = fetcher.formData
+    ? fetcher.formData.get('favorite') === 'true'
+    : contact.favorite;
 
   return (
     <fetcher.Form method="post">
       <button
-        aria-label={favorite ? 'お気に入りに登録解除' : 'お気に入りに登録'}
+        aria-label={favorite ? 'お気に入りから削除' : 'お気に入りに追加'}
         name="favorite"
         value={favorite ? 'false' : 'true'}
       >
